@@ -1,0 +1,25 @@
+<!--pages/auth.wxml-->
+<view class="container">
+    <view class="header-container">
+        <image class="title-img" mode="widthFix" src="../../assets/question.png" alt="" />
+    </view>
+    <view class="content-container">
+        <view class="title">
+            暂未获得授权，请回答以下问题
+        </view>
+        <view class="input-container">
+            <view class="label">我的手机号后四位：</view>
+            <l-input tipType="text" required="{{true}}" rules="{{phoneRules}}" hide-label="{{true}}" model:value="{{phone}}"  placeholder="请输入四位数字" />
+            <view class="label">我的昵称是：</view>
+            <l-input tipType="text" required="{{true}}" rules="{{nameRules}}" hide-label="{{true}}"  model:value="{{nickname}}" placeholder="这个是个送分题" />
+        </view>
+        <view class="btn-container">
+            <button class="confirm-btn" bindtap="confirmVerify">确认</button>
+        </view>
+    </view>
+    <view class="footer-container">
+        <image class="bottom-img" mode="widthFix" src="../../assets/login.png" alt="" />
+    </view>
+    <!-- <l-toast/> -->
+    <l-message />
+</view>

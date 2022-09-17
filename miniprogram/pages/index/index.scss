@@ -1,0 +1,43 @@
+/**index.wxss**/
+
+$primary: #1989fa;
+
+.container {
+    align-items: center;
+    .slogan-img {
+        // padding-top: 60rpx;
+        width: 700rpx;
+        height: 150rpx;
+        margin: 10rpx auto;
+    }
+
+    .bg-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100vw;
+        height: 60vh;
+        .bg-img {
+            width: 100%;
+        }
+    }
+
+    .btn-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        .enter-btn {
+            padding: 20rpx 65rpx;
+            border-radius: 20rpx;
+            background-color: $primary;
+            color: #fff;
+        }
+    }
+    .tips-container {
+        position: fixed;
+        bottom: 30rpx;
+    }
+
+}

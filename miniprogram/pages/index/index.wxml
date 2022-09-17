@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container">
+    <image class="slogan-img" src="../../assets/slogan.png" />
+
+    <view class="bg-container">
+        <image mode="widthFix" class="bg-img" src="../../assets/background.png" />
+    </view>
+    <view class="btn-container">
+        <button loading="{{loading}}" class="enter-btn" bindtap="gotoAuth">  获取验证码</button>
+    </view>
+    <view class="tips-container">
+        Mahoo12138 | 本程序仅私人使用
+    </view>
+    <l-message id="error-msg"/>
+    <l-dialog id="error-tips" />
+</view>

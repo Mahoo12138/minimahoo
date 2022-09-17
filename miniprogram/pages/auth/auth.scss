@@ -1,0 +1,49 @@
+/* pages/auth.wxss */
+
+.container {
+    .header-container {
+        width: 100%;
+        margin-top: -60rpx;
+        text-align: center;
+    }
+
+    .content-container {
+        position: relative;
+        padding: 30rpx;
+
+        .title {
+            padding-bottom: 44rpx;
+            margin-top: -20rpx;
+            text-align: center;
+            font-size: 40rpx;
+        }
+
+        .label {
+            padding: 10rpx;
+        }
+
+        .input-container {
+            padding-top: 2vh;
+        }
+
+        .btn-container {
+            z-index: 99;
+            padding-top: 3vh;
+            .confirm-btn {
+                display: block;
+                padding: 1rpx 20rpx;
+                border-radius: 20rpx;
+                color: #fff;
+                background-color: #1989fa;
+            }
+        }
+    }
+
+    .footer-container {
+        position: absolute;
+        z-index: -1;
+        bottom: 0;
+        right: -160rpx;
+    }
+
+}
