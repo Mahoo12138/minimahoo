@@ -1,0 +1,52 @@
+/* components/Card.wxss */
+.card-container {
+    margin: 0 auto;
+    padding: 30rpx;
+    box-sizing: border-box;
+    background: #fff;
+    display: flex;
+    width: 92%;
+    box-shadow: 0 4rpx 20rpx 0 rgba(212, 217, 223, 0.5);
+    border-radius: 4px;
+    flex-direction: column;
+}
+
+.card-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-title-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333;
+    font-size: 40rpx;
+
+}
+
+
+.card-top {
+    display: flex;
+    flex-direction: row;
+    height: 100rpx;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.describe {
+    color: #666;
+    font-size: 24rpx;
+}

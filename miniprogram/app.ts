@@ -1,34 +1,41 @@
 // app.ts
-import { AppGlobalData } from './types/globaldata.type';
-import { LoginData } from './types/response.types';
-import { request } from './utils/util'
+import { AppGlobalData } from "./types/globaldata.type";
+import { LoginData } from "./types/response.types";
+import { request } from "./utils/util";
 
 App<AppGlobalData>({
   globalData: {
     user: null,
-    isLogin: false
+    token: null,
+    isLogin: false,
   },
-  onLaunch() {},
+  onLaunch() {
+    this.globalData.token = wx.getStorageSync("token");
+    this.globalData.user = wx.getStorageSync("user");
+  },
 
-  userLogin(){
-      return new Promise((resolve, reject) => {
-        wx.login({
-            success: res => {
-              request<LoginData>('/auth/login', "POST", res).then((data) =>{
-                  if(data){
-                      wx.setStorageSync("token", data.token);
-                      this.globalData.user = data.user;
-                      this.globalData.isLogin = true;
-                      resolve(data)
-                  }else{
-                      reject(data);
-                  }
-              }).catch(err=>{
-                  console.warn(err)
-                  reject(err);
-              })
-            },
-          })
-      })
-  }
-})
+  userLogin() {
+    return new Promise((resolve, reject) => {
+      wx.login({
+        success: (res) => {
+          request<LoginData>("/auth/login", "POST", res)
+            .then((data) => {
+              if (data) {
+                wx.setStorageSync("token", data.token);
+                wx.setStorageSync("user", data.user);
+                this.globalData.user = data.user;
+                this.globalData.isLogin = true;
+                resolve(data);
+              } else {
+                reject(data);
+              }
+            })
+            .catch((err) => {
+              console.warn(err);
+              reject(err);
+            });
+        },
+      });
+    });
+  },
+});

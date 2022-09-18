@@ -25,7 +25,9 @@
             "outputPath": ""
         },
         "es6": true,
-        "enhance": true
+        "enhance": true,
+        "postcss": true,
+        "minified": true
     },
     "simulatorType": "wechat",
     "simulatorPluginLibVersion": {},

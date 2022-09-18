@@ -30,8 +30,8 @@ Page({
     }
   },
   onLoad() {
-    const token = wx.getStorageSync("token");
-    if (!token) {
+      const { token , user } = app.globalData;
+    if (!token || !user) {
       app
         .userLogin()
         .then((data) => {

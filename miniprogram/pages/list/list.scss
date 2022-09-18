@@ -1,1 +1,75 @@
 /* pages/list/list.wxss */
+.container {
+    background-color: #f3f3f3;
+    position: relative;
+    .header-container {
+        height: 34vh;
+        position: relative;
+        padding: 10rpx 45rpx;
+        background-color: #fff;
+        border-radius: 0 0 35rpx 35rpx;
+        overflow: hidden;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .code-wrapper {
+            font-size: 90rpx;
+        }
+        .code-time {
+            font-size: 30rpx;
+        }
+        .code-btn {
+            // flex: 2;
+            display: flex;
+            width: 305rpx;
+            justify-content: space-between;
+        }
+
+        .title-img {
+            width: 60vw;
+            position: absolute;
+            z-index: -1;
+            right: -25rpx;
+            bottom: -20rpx;
+        }
+    }
+
+    .card-container {
+        height: 66vh;
+        margin-top: 30rpx;
+
+        .card-item {
+            padding: 20rpx 0;
+
+            .card-content {
+                font-size: 28rpx;
+            }
+
+            .card-bottom {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                color: #666;
+                padding: 15rpx;
+                font-size: 24rpx;
+                margin-left: 12rpx;
+            }
+        }
+        
+    }
+    .empty-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 55vh;
+        .empty-img{
+            width: 50%;
+        }
+        .empty-tips{
+            font-size: 32rpx;
+            color: grey;
+        }
+    }
+}

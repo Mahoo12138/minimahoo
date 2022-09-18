@@ -1,2 +1,47 @@
 <!--pages/list/list.wxml-->
-<text>pages/list/list.wxml</text>
+<view class="container">
+    <view class="header-container">
+        <view class="code-time">
+            <l-tag shape="circle" plain="{{true}}">
+                <text wx:if="{{latestSms.value}}">最新发送时间：{{latestSms.createAt}}</text>
+                <text wx:else>暂无最新的短信</text>
+            </l-tag>
+        </view>
+        <view class="code-wrapper">
+            <block wx:if="{{latestSms.value}}">{{latestSms.value}}</block>
+            <block wx:else="">暂无</block>
+        </view>
+        <view class="code-btn">
+            <l-button bind:lintap="copyLatestCode" type="default" size="mini">复制</l-button>
+            <l-button bind:lintap="refreshData" type="error" size="mini" loading="{{refreshLoading}}">刷新</l-button>
+        </view>
+        <view>
+            <image class="title-img" mode="widthFix" src="../../assets/happy.png" />
+        </view>
+    </view>
+    <scroll-view scroll-y="true" class="card-container" wx:if="smsList.length">
+        <block wx:for="{{smsList}}" wx:key="id">
+            <view class="card-item">
+                <card title="{{item.value}}">
+                    <view class="card-content">
+                        {{item.content}}
+                    </view>
+                    <view class="card-bottom">
+                        发送时间: {{item.createAt}}
+                    </view>
+                    <l-tag data-code="{{item.value}}" bind:lintap="copyOtherCode" shape="circle" bg-color="#f3f3f3" font-color="#3963BC" slot="more" size="large">
+                        复制
+                    </l-tag>
+                </card>
+            </view>
+        </block>
+    </scroll-view>
+    <block wx:else>
+        <view class="empty-container">
+            <image class="empty-img" mode="widthFix" src="../../assets/empty.png" />
+            <view class="empty-tips">暂时还没有其他的短信验证码</view>
+        </view>
+
+    </block>
+    <l-message />
+</view>

@@ -1,0 +1,12 @@
+<!--components/Card.wxml-->
+<view class="card-container">
+    <view class="card-top">
+      <view class="card-left">
+        <view class="card-title">
+          <text class="card-title-content">{{title}}</text>
+        </view>
+      </view>
+      <slot name="more" />
+    </view>
+    <slot />
+</view>
