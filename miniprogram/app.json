@@ -13,7 +13,7 @@
     {
       "root": "packages/sms/",
       "name": "sms",
-      "pages": ["pages/code/code", "pages/test/test"]
+      "pages": ["pages/code/code"]
     }
   ],
   "window": {

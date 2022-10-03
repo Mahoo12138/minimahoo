@@ -1,4 +1,4 @@
-import { ListData, Sms } from "../../../../types/response.types";
+import { ListData, Sms } from "../../types/sms.type";
 import { formatTime, request } from "../../../../utils/util";
 
 // pages/list/list.ts
@@ -12,11 +12,11 @@ Page({
     this.setData({
       refreshLoading: true,
     });
-    request<ListData>("/wechat/code", "GET")
+    request<ListData>("/code", "GET")
       .then((data) => {
         this.setData({
           latestSms: this.formatDate(data[0]),
-          smsList: data.slice(1).map(this.formatDate),
+          smsList: data.slice(1).map(this.formatDate) as Sms[],
         });
         if (initial) {
           setTimeout(() => {
