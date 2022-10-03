@@ -1,5 +1,5 @@
-import { ListData, Sms } from "../../types/response.types";
-import { formatTime, request } from "../../utils/util";
+import { ListData, Sms } from "../../../../types/response.types";
+import { formatTime, request } from "../../../../utils/util";
 
 // pages/list/list.ts
 Page({
@@ -12,7 +12,7 @@ Page({
     this.setData({
       refreshLoading: true,
     });
-    request<ListData>("/code", "GET")
+    request<ListData>("/wechat/code", "GET")
       .then((data) => {
         this.setData({
           latestSms: this.formatDate(data[0]),

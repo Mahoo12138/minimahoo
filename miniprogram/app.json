@@ -1,14 +1,26 @@
 {
-    "pages": [
-        "pages/index/index",
-        "pages/auth/auth",
-        "pages/list/list"
-    ],
-    "window": {
-        "backgroundTextStyle": "dark",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "Weixin",
-        "navigationBarTextStyle": "black"
+  "pages": [
+    "pages/menu/menu",
+    "pages/index/index",
+    "pages/auth/auth"
+  ],
+  "subPackages": [
+    {
+      "root": "packages/water/",
+      "name": "water",
+      "pages": ["pages/water/index", "pages/log/log", "pages/report/report"]
     },
-    "sitemapLocation": "sitemap.json"
+    {
+      "root": "packages/sms/",
+      "name": "sms",
+      "pages": ["pages/code/code", "pages/test/test"]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
 }

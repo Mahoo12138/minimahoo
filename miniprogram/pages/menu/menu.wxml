@@ -1,0 +1,29 @@
+<!--pages/menu/menu.wxml-->
+<view class="container">
+    <scroll-view scroll-y="{{true}}">
+        <view class="header">
+            <view class="header-left">
+                <image mode="heightFix" src="https://mowned.com/html/phones/big/xiaomi/xiaomi-redmi-k40.jpg" />
+            </view>
+            <view class="header-right"></view>
+        </view>
+
+        <view class="content">
+            <l-grid show-border="{{true}}">
+                <l-grid-item 
+                    wx:for="{{apps}}" wx:key="name" 
+                    key="{{index}}" slot="{{index}}"
+                    bind:linitemtap="gotoSubApp"
+                    cell="{{item}}"
+                >
+                    <l-icon size="60" name='{{item.icon}}' l-class='iconfont' />
+                    <view class="text">{{item.name}}</view>
+                </l-grid-item>
+            </l-grid>
+        </view>
+
+        <view class="footer">
+            <!-- <image class="header-image" mode="widthFix" src="../../assets/home.png" /> -->
+        </view>
+    </scroll-view>
+</view>

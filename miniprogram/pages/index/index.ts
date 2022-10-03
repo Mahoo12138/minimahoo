@@ -30,11 +30,11 @@ Page({
     }
   },
   onLoad() {
-      const { token , user } = app.globalData;
+    const { token , user } = app.globalData;
     if (!token || !user) {
       app
         .userLogin()
-        .then((data) => {
+        .then(() => {
           this.setData({
             canIGotoAuth: true,
           });

@@ -1,0 +1,61 @@
+/* pages/menu/menu.wxss */
+
+.container {
+    height: 100%;
+    .header {
+        display: flex;
+        margin: 0 20rpx;
+        align-items: center;
+        border-radius: 20rpx;
+        min-height: 30vh;
+        padding: 20rpx 30rpx;
+        box-sizing: border-box;
+        background-color: #71a5f1;
+        .header-left {
+            width: 32vw;
+            height: 22vh;
+            padding: 15rpx;
+            border-radius: 20rpx;
+            background-color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            & image {
+                max-height: 18vh;
+            }
+        }
+    }
+}
+
+@font-face {
+    font-family: 'iconfont';
+    /* Project id 3684512 */
+    src: url('//at.alicdn.com/t/c/font_3684512_868i01rlkwj.woff2?t=1664758184635') format('woff2'),
+        url('//at.alicdn.com/t/c/font_3684512_868i01rlkwj.woff?t=1664758184635') format('woff'),
+        url('//at.alicdn.com/t/c/font_3684512_868i01rlkwj.ttf?t=1664758184635') format('truetype');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    padding: 15rpx;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.l-icon-water:before {
+    content: "\e640";
+}
+
+.l-icon-yanzhengma:before {
+    content: "\e618";
+}
+
+// .header-image {
+//     width: 100%;
+//     position: absolute;
+//     top: -10rpx;
+//     left: 0;
+// }

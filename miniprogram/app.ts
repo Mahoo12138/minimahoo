@@ -18,8 +18,9 @@ App<AppGlobalData>({
     return new Promise((resolve, reject) => {
       wx.login({
         success: (res) => {
-          request<LoginData>("/auth/login", "POST", res)
+          request<LoginData>("/wechat/auth/login", "POST", res)
             .then((data) => {
+                console.log(data)
               if (data) {
                 wx.setStorageSync("token", data.token);
                 wx.setStorageSync("user", data.user);

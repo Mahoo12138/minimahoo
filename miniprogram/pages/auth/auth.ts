@@ -45,10 +45,11 @@ Page({
             nickname,
             phone
         }
-        request<VertifyData>('/auth/verify', "POST", data).then(data => {
+        request<VertifyData>('/wechat/auth/verify', "POST", data).then(data => {
             if(data.result){
                 this.showMessage("授权成功")
                 setTimeout(()=> {
+                    wx.removeStorageSync('user')
                     wx.redirectTo({
                         url: "../list/list",
                       });
