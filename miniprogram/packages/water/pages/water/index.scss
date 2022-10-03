@@ -1,1 +1,40 @@
 /* packages/Water/pages/water/index.wxss */
+
+.container {
+    .header {
+        .card {
+            margin: 0 auto;
+            padding: 30rpx;
+            box-sizing: border-box;
+            display: flex;
+            width: 92%;
+            box-shadow: 0 4rpx 20rpx 0 rgba(212, 217, 223, 0.5);
+            border-radius: 4px;
+            flex-direction: column;
+            .card-top {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20rpx;
+                color: #3963bc;
+            }
+        }
+    }
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 30rpx;
+        .cup-item{
+           width: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 20rpx 0;
+        }
+    }
+}
+
+.test {
+    color: green;
+}

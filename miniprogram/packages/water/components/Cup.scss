@@ -1,0 +1,19 @@
+/* packages/water/components/Cup.wxss */
+.cup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: gray;
+    .type {
+        max-width: 80rpx;
+    }
+
+    .yield {
+        font-size: 36rpx;
+        font-weight: 800;
+    }
+
+    .time {
+        font-size: 28rpx;
+    }
+}

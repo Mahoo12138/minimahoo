@@ -1,2 +1,36 @@
 <!--packageWater/pages/water/index.wxml-->
-<text>packageWater/pages/water/index.wxml</text>
+<view class="container">
+    <view class="header">
+        <view class="card">
+            <view class="card-top">
+                <view>今日喝水目标</view>
+                <view>700/2270ml</view>
+            </view>
+            <l-progress percent="50" stroke-width='20' />
+        </view>
+    </view>
+    <view class="content">
+        <view class="cup-item">
+            <cup image="cup3" unit="ml" water="300" time="09:00"/>
+        </view>
+        <view class="cup-item">
+            <cup image="cup4" unit="ml" water="300" time="09:00"/>
+        </view>
+        <view class="cup-item">
+            <cup image="cup2" unit="ml" water="300" time="09:00"/>
+        </view>
+        <view class="cup-item">
+            <cup image="cup8" unit="ml" water="300" time="09:00"/>
+        </view>
+        <view class="cup-item">
+            <cup image="cup2" unit="ml" water="300" time="09:00"/>
+        </view>
+        <view class="cup-item">
+            <cup image="cup8" unit="ml" water="300" time="09:00"/>
+        </view>
+        <view class="cup-item">
+            <cup image="cup3" unit="ml" water="300" time="09:00"/>
+        </view>
+    </view>
+    <!-- <image src="../../assets/imgs/cup1.png" /> -->
+</view>

@@ -1,3 +1,10 @@
 {
-    "usingComponents": {}
+    "usingComponents": {
+        "card": "/components/Card",
+        "cup": "../../components/Cup",
+        "l-progress": "/miniprogram_npm/lin-ui/progress/index",
+        "l-grid": "/miniprogram_npm/lin-ui/grid/index",
+        "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index"
+    },
+    "navigationBarTitleText": "喝水宝记录"
 }

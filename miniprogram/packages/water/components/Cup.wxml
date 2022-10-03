@@ -1,0 +1,6 @@
+<!--packages/water/components/Cup.wxml-->
+<view class="cup">
+    <image class="type" mode="widthFix" src="{{'../assets/imgs/' + image + '.png'}}" />
+    <view class="yield">{{water}} {{unit}}</view>
+    <view class="time">{{time}}</view>
+</view>
