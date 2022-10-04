@@ -18,8 +18,8 @@ const formatNumber = (n: number) => {
   return s[1] ? s : "0" + s;
 };
 type Method = "OPTIONS" | "GET" | "HEAD" | "POST" | "PUT" | "DELETE";
-// const API_BASE_URL = "https://localhost:3000/api"; // 测试域名
-const API_BASE_URL = "https://mahoo12138.cn/api/wechat"; // 测试域名
+const API_BASE_URL = "https://192.168.31.56:3000/api"; // 测试域名
+// const API_BASE_URL = "https://mahoo12138.cn/api"; // 测试域名
 
 export const request = <T>(url: string, method: Method, data?: any) => {
   let _url = API_BASE_URL + url;

@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/menu/menu",
     "pages/index/index",
-    "pages/auth/auth"
+    "pages/auth/auth",
+    "pages/menu/menu"
   ],
   "subPackages": [
     {
@@ -14,6 +14,15 @@
       "root": "packages/sms/",
       "name": "sms",
       "pages": ["pages/code/code"]
+    },
+    {
+      "root": "packages/memos/",
+      "name": "memos",
+      "pages": [
+        "pages/memos/home",
+        "pages/welcom/index",
+        "pages/search/index"
+      ]
     }
   ],
   "window": {

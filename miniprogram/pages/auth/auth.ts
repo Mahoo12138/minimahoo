@@ -1,3 +1,4 @@
+import { AuthVerity } from "../../common/api";
 import { AppGlobalData } from "../../types/globaldata.type";
 import { VertifyData } from "../../types/response.types";
 import { request } from "../../utils/util";
@@ -46,7 +47,7 @@ Page({
       nickname,
       phone,
     };
-    request<VertifyData>("/auth/verify", "POST", data)
+    request<VertifyData>(AuthVerity, "POST", data)
       .then((data) => {
         if (data.result) {
           this.showMessage("授权成功");

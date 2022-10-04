@@ -21,7 +21,7 @@ Page({
     const { user } = app.globalData;
     if (user?.isAuth) {
       wx.reLaunch({
-        url: "../list/list",
+        url: "../menu/menu",
       });
     } else {
       wx.navigateTo({
@@ -61,5 +61,5 @@ Page({
         canIGotoAuth: true,
       });
     }
-  },
+  }
 });

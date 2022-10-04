@@ -12,7 +12,7 @@ Page({
     this.setData({
       refreshLoading: true,
     });
-    request<ListData>("/code", "GET")
+    request<ListData>("/wechat/code", "GET")
       .then((data) => {
         this.setData({
           latestSms: this.formatDate(data[0]),

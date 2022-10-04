@@ -6,7 +6,7 @@
                 <view>今日喝水目标</view>
                 <view>{{now}}/{{total}}ml</view>
             </view>
-            <l-progress percent="50" stroke-width='20' />
+            <l-progress percent="{{precent}}" stroke-width='20' />
         </view>
     </view>
     <view class="content">

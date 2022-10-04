@@ -6,8 +6,8 @@ Page({
     apps: apps,
   },
 
+  // @ts-ignore
   gotoSubApp({ detail }) {
-    console.log(detail.cell);
     wx.navigateTo({
       url: detail.cell.url,
       success: () => {},
@@ -17,9 +17,11 @@ Page({
       complete: () => {},
     });
   },
+  onShow() {
+    wx.hideHomeButton();
+  },
   onLoad() {},
   onReady() {},
-  onShow() {},
   onHide() {},
   onUnload() {},
   onPullDownRefresh() {},

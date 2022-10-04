@@ -1,4 +1,5 @@
 // app.ts
+import { AuthLogin } from "./common/api";
 import { AppGlobalData } from "./types/globaldata.type";
 import { LoginData } from "./types/response.types";
 import { request } from "./utils/util";
@@ -18,9 +19,8 @@ App<AppGlobalData>({
     return new Promise((resolve, reject) => {
       wx.login({
         success: (res) => {
-          request<LoginData>("/wechat/auth/login", "POST", res)
+          request<LoginData>(AuthLogin, "POST", res)
             .then((data) => {
-                console.log(data)
               if (data) {
                 wx.setStorageSync("token", data.token);
                 wx.setStorageSync("user", data.user);

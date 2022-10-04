@@ -1,0 +1,58 @@
+@media (prefers-color-scheme: dark) {
+  page {
+    background: rgb(17, 17, 17) !important;
+  }
+
+  .piecs {
+    filter: brightness(0.5);
+  }
+
+  button {
+    filter: brightness(0.5);
+  }
+
+  .welcom .content {
+    color: #ffffff80;
+  }
+
+  .tips .content {
+    color: #07C16080;
+  }
+
+  .tips {
+    background-color: rgba(54, 54, 54);
+    color: #ffffff80;
+  }
+
+  .slogan {
+    color: rgb(118, 51, 0);
+  }
+
+  .dsc {
+    background-color: rgba(17, 17, 17, 0.18823529411764706);
+    color: rgba(255, 255, 255, 0.3137254901960784);
+  }
+
+  input {
+    background: rgb(21 21 21);
+    color: #ffffff80;
+  }
+
+  input:focus {
+    border: rgb(0, 0, 0);
+  }
+
+  .form .title {
+    color: #ffffff80;
+  }
+
+  @keyframes flow {
+    from {
+      transform: translateY(0);
+    }
+
+    to {
+      transform: translateY(-10rpx);
+    }
+  }
+}
