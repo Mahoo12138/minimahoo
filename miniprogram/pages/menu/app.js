@@ -2,8 +2,8 @@ export default ([
     {
         name: "验证码",
         url: "/packages/sms/pages/code/code",
-        icon: "yanzhengma",
-        color: "#3963bc"
+        icon: "code",
+        color: "#ff7f27"
     },
     {
         name: "喝水宝",
@@ -14,7 +14,7 @@ export default ([
     {
         name: "Memos",
         url: "/packages/memos/pages/welcom/index",
-        icon: "water",
-        color: "#3963bc"
+        icon: "memos",
+        color: "#ffbf72"
     }
 ])

@@ -17,7 +17,7 @@
                     cell="{{item}}"
                 >
                     <l-icon color="{{item.color}}" size="60" name='{{item.icon}}' l-class='iconfont' />
-                    <view class="text">{{item.name}}</view>
+                    <view class="gird-text">{{item.name}}</view>
                 </l-grid-item>
             </l-grid>
         </view>
