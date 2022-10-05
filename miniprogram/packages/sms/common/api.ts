@@ -1,4 +1,4 @@
-import { errHandler, request } from "../../../utils/util";
+import { errHandler, request } from "../../../utils/http";
 import { ListData } from "../types/sms.type";
 
 const CodeList = "/wechat/code";
