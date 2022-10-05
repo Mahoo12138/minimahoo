@@ -1,5 +1,6 @@
-import { ListData, Sms } from "../../types/sms.type";
-import { formatTime, request } from "../../../../utils/util";
+import { Sms } from "../../types/sms.type";
+import { formatTime } from "../../../../utils/util";
+import { getList } from "../../common/api";
 
 // pages/list/list.ts
 Page({
@@ -12,7 +13,7 @@ Page({
     this.setData({
       refreshLoading: true,
     });
-    request<ListData>("/wechat/code", "GET")
+    getList()
       .then((data) => {
         this.setData({
           latestSms: this.formatDate(data[0]),
@@ -24,9 +25,8 @@ Page({
           },500);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         this.showMessage("刷新失败", "error");
-        console.warn(err);
       })
       .finally(() => {
         setTimeout(() => {

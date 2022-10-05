@@ -1,7 +1,6 @@
-import { AuthVerity } from "../../common/api";
+import { authVerify } from "../../common/api";
 import { AppGlobalData } from "../../types/globaldata.type";
-import { VertifyData } from "../../types/response.types";
-import { request } from "../../utils/util";
+
 // 获取应用实例
 const app = getApp<AppGlobalData>();
 Page({
@@ -47,7 +46,7 @@ Page({
       nickname,
       phone,
     };
-    request<VertifyData>(AuthVerity, "POST", data)
+    authVerify(data)
       .then((data) => {
         if (data.result) {
           this.showMessage("授权成功");

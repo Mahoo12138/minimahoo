@@ -47,3 +47,10 @@ export const request = <T>(url: string, method: Method, data?: any) => {
     });
   });
 };
+
+export const errHandler = (reject: Function) => {
+  return (err: any) => {
+    console.error(err);
+    reject(err);
+  };
+};
