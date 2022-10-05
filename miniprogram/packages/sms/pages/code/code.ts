@@ -1,5 +1,6 @@
 import { Sms } from "../../types/sms.type";
-import { formatTime } from "../../../../utils/util";
+import { formatTime } from "../../../../utils/time";
+import { showMessage } from "../../../../utils/ui";
 import { getList } from "../../common/api";
 
 // pages/list/list.ts
@@ -21,12 +22,12 @@ Page({
         });
         if (initial) {
           setTimeout(() => {
-            this.showMessage("刷新成功");
+            showMessage("刷新成功");
           },500);
         }
       })
       .catch(() => {
-        this.showMessage("刷新失败", "error");
+        showMessage("刷新失败", "error");
       })
       .finally(() => {
         setTimeout(() => {
@@ -42,7 +43,7 @@ Page({
     if (value) {
       this.copyCodeValue(value);
     } else {
-      this.showMessage("复制失败", "error");
+      showMessage("复制失败", "error");
     }
   },
   copyOtherCode(event: any) {
@@ -50,7 +51,7 @@ Page({
     if (code) {
       this.copyCodeValue(code);
     } else {
-      this.showMessage("复制失败", "error");
+      showMessage("复制失败", "error");
     }
   },
   copyCodeValue(code: string) {
@@ -58,7 +59,7 @@ Page({
       data: code,
       success: () => {
         wx.hideToast();
-        this.showMessage("复制成功");
+        showMessage("复制成功");
       },
     });
   },
@@ -68,13 +69,6 @@ Page({
     const date = formatTime(new Date(sms.createAt));
     sms.createAt = date;
     return sms;
-  },
-  showMessage(msg: string, type = "success") {
-    // @ts-ignore
-    wx.lin.showMessage({
-      content: msg,
-      type,
-    });
   },
   onLoad() {
     this.refreshData(false);

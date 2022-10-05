@@ -2,22 +2,33 @@
 <view class="container">
     <scroll-view scroll-y="{{true}}">
         <view class="header">
-            <view class="header-left">
-                <image mode="heightFix" src="https://mowned.com/html/phones/big/xiaomi/xiaomi-redmi-k40.jpg" />
-            </view>
-            <view class="header-right"></view>
+            <block wx:if="{{loading}}">
+               <l-loading show="{{true}}" size="large"></l-loading>
+            </block>
+            <block wx:else>
+                <view class="header-top">
+                    <view class="header-left">
+                        <image mode="heightFix" src="https://mowned.com/html/phones/big/xiaomi/xiaomi-redmi-k40.jpg" />
+                    </view>
+                    <view class="header-right">
+                        <view><span>机型：</span>{{phone.Model}}</view>
+                        <view><span>系统：</span>{{phone.OS}}</view>
+                        <view><span>CPU：</span>{{phone.Cpu.name}}</view>
+                        <view><span>内存：</span>{{phone.Memory.free}}MB / {{phone.Memory.total}}MB</view>
+                    </view>
+                </view>
+                <view class="header-bottom">
+                    <view>已不间断运行：{{phone.Uptime[0]}}天 {{phone.Uptime[1]}}小时 {{phone.Uptime[2]}}分钟</view>
+                </view>
+            </block>
+
         </view>
 
         <view class="content">
             <l-grid show-border="{{true}}">
-                <l-grid-item 
-                    wx:for="{{apps}}" wx:key="name" 
-                    key="{{index}}" slot="{{index}}"
-                    bind:linitemtap="gotoSubApp"
-                    cell="{{item}}"
-                >
+                <l-grid-item wx:for="{{apps}}" wx:key="name" key="{{index}}" slot="{{index}}" bind:linitemtap="gotoSubApp" cell="{{item}}">
                     <l-icon color="{{item.color}}" size="60" name='{{item.icon}}' l-class='iconfont' />
-                    <view class="gird-text">{{item.name}}</view>
+                    <view class="gird-span">{{item.name}}</view>
                 </l-grid-item>
             </l-grid>
         </view>

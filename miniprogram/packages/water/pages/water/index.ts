@@ -1,4 +1,4 @@
-import { request } from "../../../../utils/util";
+import { request } from "../../../../utils/http";
 import dayjs from 'dayjs';
 import { Drink } from "../../types/drink.type";
 import { drinkList } from "../../common/api";
