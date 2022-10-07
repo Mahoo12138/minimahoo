@@ -53,7 +53,7 @@ Page({
           setTimeout(() => {
             wx.removeStorageSync("user");
             wx.redirectTo({
-              url: "../list/list",
+              url: "/pages/menu/menu",
             });
           }, 200);
         } else {

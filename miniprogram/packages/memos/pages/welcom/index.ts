@@ -1,207 +1,186 @@
+import { getUser, patchUser } from "../../../../common/api";
+import { showMessage } from "../../../../utils/ui";
+import { signIn, signUp } from "../../common/api";
+
 // pages/welcom/index.js
-var app = getApp()
+var app = getApp();
 
 Page({
-
   data: {
-
+    email: "",
+    password: "",
+    btnDisable: false,
+    alreadyBind: false
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-    // this.setData({
-    //   url: app.globalData.url,
-    //   email: '',
-    //   password: '',
-    //   btnDisable: false
-    // })
-  },
-
   copy() {
     wx.setClipboardData({
       data: app.globalData.url,
-    })
+    });
   },
 
   creatUser() {
-    var that = this
+    if (this.data.alreadyBind) {
+      wx.redirectTo({
+        url: '../memos/home',
+      })
+      return;
+    }
     this.setData({
-      btnDisable: true
-    })
+      btnDisable: true,
+    });
     var reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     if (!reg.test(this.data.email)) {
-      wx.vibrateLong()
+      wx.vibrateLong();
       wx.showToast({
-        icon: 'none',
-        title: '邮箱格式错误',
-      })
+        icon: "none",
+        title: "邮箱格式错误",
+      });
       this.setData({
-        btnDisable: false
-      })
+        btnDisable: false,
+      });
     } else if (this.data.password.length < 6) {
-      wx.vibrateLong()
+      wx.vibrateLong();
       wx.showToast({
-        icon: 'none',
-        title: '密码长度需大于六位',
-      })
+        icon: "none",
+        title: "密码长度需大于六位",
+      });
       this.setData({
-        btnDisable: false
-      })
+        btnDisable: false,
+      });
     } else {
-      wx.cloud.callFunction({
-        name: 'creatuser',
-        data: {
-          method: 'POST',
-          needHost: true,
-          body: {
-            "email": this.data.email,
-            "password": this.data.password,
-            "role": "USER"
-          },
-          url: app.globalData.url + '/api/user',
-        },
-        success: function (res) {
-          //500 邮箱已占用，401 用户权限不足，undefined 创建成功
-          console.log(res.result.statusCode)
-          var code = res.result.statusCode
-          console.log(res)
-          if (!code) {
-            //创建成功
-            wx.vibrateShort()
-            wx.showToast({
-              title: '创建成功',
-            })
-            var openId = res.result.data.openId
-            wx.setStorage({
-              key: "openId",
-              data: openId,
-              // encrypt: true,
-              success(res) {
-                console.log(res)
-                wx.redirectTo({
-                  url: '../home/index',
-                })
-              },
-              fail(err) {
-                wx.showToast({
-                  title: 'something wrong',
-                })
-              }
-            })
-          } else if (code == 500) {
-            app.api.signIn(that.data.url, {
-              "email": that.data.email,
-              "password": that.data.password,
-            }).then(res => {
-              if (res.data) {
-                console.log(res.data.openId)
-                wx.vibrateShort()
-                wx.showToast({
-                  title: '登录成功',
-                })
-                wx.setStorage({
-                  key: "openId",
-                  data: res.data.openId,
-                  // encrypt: true,
-                  success(res) {
-                    console.log(res)
-                    wx.redirectTo({
-                      url: '../home/index',
-                    })
-                  },
-                  fail(err) {
-                    wx.showToast({
-                      title: 'something wrong',
-                    })
-                  }
-                })
-              } else {
-                console.log(res)
-                wx.vibrateLong()
-                wx.showToast({
-                  icon: 'none',
-                  title: '密码错误',
-                })
-                that.setData({
-                  btnDisable: false
-                })
-              }
-            })
-          } else {
-            wx.vibrateLong()
-            wx.showToast({
-              icon: 'none',
-              title: 'something wrong',
-            })
-            that.setData({
-              btnDisable: false
-            })
-          }
-        },
-        fail: function (error) {
-          console.log(error)
-          wx.vibrateLong()
+      const data = {
+        email: this.data.email,
+        password: this.data.password,
+      }
+      signUp(data).then((data) => {
+        console.log(data);
+        // var code = res.result.statusCode;
+        // console.log(res);
+        // if (!code) {
+        //   //创建成功
+        //   wx.vibrateShort();
+        //   wx.showToast({
+        //     title: "创建成功",
+        //   });
+        //   var openId = res.result.data.openId;
+        //   wx.setStorage({
+        //     key: "openId",
+        //     data: openId,
+        //     // encrypt: true,
+        //     success(res) {
+        //       console.log(res);
+        //       wx.redirectTo({
+        //         url: "../home/index",
+        //       });
+        //     },
+        //     fail(err) {
+        //       wx.showToast({
+        //         title: "something wrong",
+        //       });
+        //     },
+        //   });
+        // } else if (code == 500) {
+        //   app.api
+        //     .signIn(that.data.url, {
+        //       email: that.data.email,
+        //       password: that.data.password,
+        //     })
+        //     .then((res) => {
+        //       if (res.data) {
+        //         console.log(res.data.openId);
+        //         wx.vibrateShort();
+        //         wx.showToast({
+        //           title: "登录成功",
+        //         });
+        //         wx.setStorage({
+        //           key: "openId",
+        //           data: res.data.openId,
+        //           // encrypt: true,
+        //           success(res) {
+        //             console.log(res);
+        //             wx.redirectTo({
+        //               url: "../home/index",
+        //             });
+        //           },
+        //           fail(err) {
+        //             wx.showToast({
+        //               title: "something wrong",
+        //             });
+        //           },
+        //         });
+        //       } else {
+        //         console.log(res);
+        //         wx.vibrateLong();
+        //         wx.showToast({
+        //           icon: "none",
+        //           title: "密码错误",
+        //         });
+        //         that.setData({
+        //           btnDisable: false,
+        //         });
+        //       }
+        //     });
+        // } else {
+        //   wx.vibrateLong();
+        //   wx.showToast({
+        //     icon: "none",
+        //     title: "something wrong",
+        //   });
+        //   that.setData({
+        //     btnDisable: false,
+        //   });
+        // }
+      }).catch(() => {
+        signIn(data).then(data => {
+          console.log(data)
+          patchUser(app.globalData.user.id, { ...app.globalData.user, memosId: data.user.id })
+          wx.setStorageSync("memos-openId", data.user.openId)
           wx.showToast({
-            icon: 'none',
-            title: 'something wrong',
+            icon: "success",
+            title: "登录绑定成功",
+          });
+          wx.redirectTo({
+            url: '../memos/home',
           })
-          that.setData({
-            btnDisable: false
-          })
-        }
-      })
+        });
+      });
     }
-
+  },
+  onLoad() {
+    wx.showLoading({
+      title: "加载中",
+    });
+    app.globalData.top_btn = wx.getMenuButtonBoundingClientRect()
+    
+    const user = app.globalData.user;
+    getUser(user.id).then((data) => {
+      wx.hideLoading();
+      if (data.memosId) {
+        this.setData({
+          alreadyBind: true
+        })
+        wx.setStorageSync("memos-openId", data.memosKey)
+      } else {
+        wx.showToast({
+          title: "账号未绑定麦默",
+          icon: "error",
+          duration: 2000,
+        });
+      }
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+  onReady() { },
 
-  },
+  onShow() { },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
+  onHide() { },
 
-  },
+  onUnload() { },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
+  onPullDownRefresh() { },
 
-  },
+  onReachBottom() { },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() { },
+});

@@ -26,19 +26,21 @@ Page({
     wx.hideHomeButton();
   },
   onLoad() {
-    getPhoneInfo().then((data)=>{
+    getPhoneInfo()
+      .then((data) => {
         this.setData({
-            phone: data,
-            loading: false
-        })
-    }).catch(() => {
+          phone: data,
+          loading: false,
+        });
+      })
+      .catch(() => {
         showMessage("获取手机信息失败", "error");
-    })
-    setTimeout(()=>{
-        if(this.data.loading){
-            showMessage("加载缓慢，手机可能处于睡眠模式", "warning")
-        }
-    },5000)
+      });
+    setTimeout(() => {
+      if (this.data.loading) {
+        showMessage("加载缓慢，手机可能处于睡眠模式", "warning", 4000);
+      }
+    }, 3000);
   },
   onReady() {},
   onHide() {},

@@ -1,14 +1,19 @@
 // pages/home/index.js
+import { Event } from '../../../../types/other.type';
+import { deleteMemo, editMemo, getMemos, sendMemo } from '../../common/api';
 import { formatMemoContent, parseHtmlToRawText } from "../../common/marked";
+import { calTime, memosArrenge } from '../../common/utils'
+import { Memo } from '../../types/memo.type';
 var app = getApp();
 
 Page({
   data: {
+    openId: '',
     halfDialog: "closeHalfDialog",
     edit: false,
     editMemoId: 0,
-    memos: [],
-    showMemos: [],
+    memos: [] as Memo[],
+    showMemos: [] as Memo[],
     memo: "",
     onlineColor: "#eeeeee",
     showArchived: false,
@@ -16,16 +21,15 @@ Page({
   },
 
   onLoad(options) {
-    // console.log(app.api)
     var that = this;
     this.setData({
       top_btn: app.globalData.top_btn,
     });
     wx.getStorage({
-      key: "openId",
+      key: "memos-openId",
       // encrypt: true,
       success(res) {
-        // console.log(res.data)
+        console.log(res.data)
         app.globalData.openId = res.data;
         that.setData({
           url: app.globalData.url,
@@ -61,7 +65,7 @@ Page({
     var memos = this.data.memos;
     var showMemos = this.data.showMemos;
     if (showMemos.length == memos.length) {
-      wx.vibrateShort();
+      wx.vibrateShort({ type: "light" });
       wx.showToast({
         icon: "none",
         title: "已全部加载",
@@ -80,7 +84,9 @@ Page({
   },
 
   inputTodo() {
-    wx.vibrateShort();
+    wx.vibrateShort({
+      type: 'light'
+    });
     wx.showToast({
       icon: "none",
       title: " - [x] 表示done",
@@ -97,7 +103,7 @@ Page({
     });
   },
 
-  changeMemoPinned(e) {
+  changeMemoPinned(e: Event) {
     console.log(e.detail.memoid);
     console.log(e.detail.pinned);
     var data = {
@@ -109,7 +115,7 @@ Page({
       .then((res) => {
         console.log(res);
         if (res.data) {
-          wx.vibrateShort();
+          wx.vibrateShort({ type: "light" });
           if (!e.detail.pinned) {
             wx.showToast({
               icon: "none",
@@ -143,20 +149,22 @@ Page({
   },
 
   changeshowArchived() {
-    wx.vibrateShort();
+    wx.vibrateShort({
+      type: 'light'
+    });
     this.setData({
       showArchived: !this.data.showArchived,
     });
   },
 
-  memoInput(e) {
+  memoInput(e: Event) {
     // console.log(e.detail.value)
     this.setData({
       memo: e.detail.value,
     });
   },
 
-  dialogEdit(e) {
+  dialogEdit(e: Event) {
     // console.log(e)
     this.setData({
       halfDialog: "showHalfDialog",
@@ -166,16 +174,15 @@ Page({
     });
   },
 
-  getMemos(openId) {
+  getMemos(openId: string) {
     var that = this;
-    app.api.getMemos(app.globalData.url, openId).then((result) => {
-      console.log(result.data);
-      if (!result.data) {
+    getMemos(openId).then((memos) => {
+      console.log(memos);
+      if (!memos) {
         wx.redirectTo({
           url: "../welcom/index",
         });
       } else {
-        var memos = result.data;
         for (let i = 0; i < memos.length; i++) {
           const ts = memos[i].createdTs;
           var time = app.calTime(ts);
@@ -184,7 +191,7 @@ Page({
           let md = formatMemoContent(memos[i].content);
           memos[i].formatContent = md;
         }
-        var arrMemos = app.memosArrenge(memos);
+        var arrMemos = memosArrenge(memos);
         that.setData({
           memos: arrMemos,
           showMemos: arrMemos.slice(0, 10),
@@ -209,13 +216,12 @@ Page({
       if (!this.data.edit) {
         this.sendMemo();
       } else {
-        var url = this.data.url;
         var openId = this.data.openId;
         var id = this.data.editMemoId;
         var data = {
           content: content,
         };
-        that.editMemoContent(url, openId, id, data);
+        that.editMemoContent(openId, id, data);
       }
     } else {
       wx.vibrateLong();
@@ -226,11 +232,11 @@ Page({
     }
   },
 
-  editMemoContent(url, openId, id, data) {
+  editMemoContent(openId: string, id: number, data: any) {
     var that = this;
-    app.api.editMemo(url, openId, id, data).then((res) => {
-      console.log(res);
-      if (res.data) {
+    editMemo(openId, id, data).then((data) => {
+      console.log("editMemoContent", data);
+      if (data) {
         var memos = that.data.memos;
         for (let i = 0; i < memos.length; i++) {
           if (memos[i].id == that.data.editMemoId) {
@@ -247,7 +253,7 @@ Page({
           editMemoId: 0,
           edit: false,
         });
-        wx.vibrateShort();
+        wx.vibrateShort({ type: "light" });
         wx.showToast({
           icon: "none",
           title: "已更改",
@@ -269,11 +275,11 @@ Page({
     });
   },
 
-  editMemoRowStatus(url, openId, id, data) {
+  editMemoRowStatus(openId: string, id: number, data: any) {
     var that = this;
-    app.api.editMemo(url, openId, id, data).then((res) => {
-      console.log(res);
-      if (res.data) {
+    editMemo(openId, id, data).then((data) => {
+      console.log(data);
+      if (data) {
         var memos = that.data.memos;
         for (let i = 0; i < memos.length; i++) {
           if (memos[i].id == id) {
@@ -284,7 +290,7 @@ Page({
           memos: memos,
           showMemos: memos.slice(0, that.data.showMemos.length),
         });
-        wx.vibrateShort();
+        wx.vibrateShort({ type: "light" });
         wx.showToast({
           icon: "none",
           title: "归档状态已更改",
@@ -300,16 +306,14 @@ Page({
 
   sendMemo() {
     var content = this.data.memo;
-    var url = app.globalData.url + "/api/memo";
     var openId = this.data.openId;
     var memos = this.data.memos;
     var that = this;
-    app.api.sendMemo(url, openId, content).then((res) => {
-      console.log(res.data);
-      if (res.data) {
-        wx.vibrateShort();
-        var newmemo = res.data;
-        newmemo.time = app.calTime(newmemo.createdTs);
+    sendMemo(openId, content).then((data) => {
+      if (data) {
+        wx.vibrateShort({ type: "light" });
+        var newmemo = data;
+        newmemo.time = calTime(newmemo.createdTs);
         let md = formatMemoContent(newmemo.content);
         newmemo.formatContent = md;
         memos.unshift(newmemo);
@@ -338,30 +342,29 @@ Page({
     });
   },
 
-  deleteMemoFaker(e) {
+  deleteMemoFaker(e: Event) {
     console.log(e.detail.rowstatus);
     var data = {
       rowStatus: e.detail.rowstatus == "NORMAL" ? "ARCHIVED" : "NORMAL",
     };
-    var url = this.data.url;
     var openId = this.data.openId;
     var id = e.detail.memoid;
-    this.editMemoRowStatus(url, openId, id, data);
+    this.editMemoRowStatus(openId, id, data);
   },
 
-  deleteMemo(e) {
+  deleteMemo(e: Event) {
     var that = this;
     var memos = this.data.memos;
     var id = e.detail.memoid;
     console.log(e.detail.memoid);
     wx.vibrateLong();
-    app.api.deleteMemo(this.data.url, this.data.openId, id).then((res) => {
-      if (res) {
+    deleteMemo(this.data.openId, id).then((data) => {
+      if (data) {
         for (let i = 0; i < memos.length; i++) {
           if (memos[i].id == id) {
             memos.splice(i, 1);
           }
-          var arrMemos = app.memosArrenge(memos);
+          var arrMemos = memosArrenge(memos);
           that.setData({
             memos: arrMemos,
             showMemos: arrMemos.slice(0, that.data.showMemos.length),
@@ -386,21 +389,21 @@ Page({
   },
 
   goWelcom() {
-    wx.vibrateShort();
+    wx.vibrateShort({ type: "light" });
     wx.navigateTo({
       url: "../welcom/index",
     });
   },
 
   goSearch() {
-    wx.vibrateShort();
+    wx.vibrateShort({ type: "light" });
     wx.navigateTo({
       url: "../search/index",
     });
   },
 
   changeCloseMemo() {
-    wx.vibrateShort();
+    wx.vibrateShort({ type: "light" });
     if (this.data.halfDialog == "showHalfDialog" && this.data.edit) {
       this.setData({
         halfDialog: "closeHalfDialog",
@@ -419,9 +422,9 @@ Page({
     }
   },
 
-  copy(e) {
+  copy(e : Event) {
     console.log(e);
-    wx.vibrateShort();
+    wx.vibrateShort({ type: "light" });
     wx.setClipboardData({
       data: e.target.dataset.content,
     });

@@ -37,4 +37,5 @@
             <!-- <image class="header-image" mode="widthFix" src="../../assets/home.png" /> -->
         </view>
     </scroll-view>
+    <l-message/>
 </view>

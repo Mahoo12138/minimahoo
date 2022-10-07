@@ -11,10 +11,15 @@
  <!-- <text class="title">网址</text>
       <input disabled auto-focus type="text" placeholder="{{url}}" model:value="{{url}}" bindlongtap="copy" />  -->
       <text class="title">邮箱</text>
-      <input type="text" placeholder="xxx@xx.com" confirm-type="done" model:value="{{email}}" />
+      <input disabled="{{alreadyBind}}" type="text" placeholder="xxx@xx.com" confirm-type="done" model:value="{{email}}" />
       <text class="title">密码</text>
-      <input type="text" placeholder="输入密码" confirm-type="done" model:value="{{password}}" />
-      <button style="margin-top: 60rpx;" type="primary" size="default" catchtap="creatUser" disabled="{{btnDisable}}" loading="{{btnDisable}}">注册/登录</button>
+      <input disabled="{{alreadyBind}}" type="text" placeholder="输入密码" confirm-type="done" model:value="{{password}}" />
+      <button 
+      style="margin-top: 60rpx;" 
+      type="primary" size="default" 
+      catchtap="creatUser" 
+      disabled="{{btnDisable}}" 
+      loading="{{btnDisable}}">{{alreadyBind? '进入麦默': '注册/绑定'}}</button>
     </view>
   </view>
 </view>

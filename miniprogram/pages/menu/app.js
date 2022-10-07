@@ -12,6 +12,12 @@ export default ([
         color: "#73be70"
     },
     {
+        name: "Daylio",
+        url: "/packages/memos/pages/welcom/index",
+        icon: "daylio",
+        color: "#1ab991"
+    },
+    {
         name: "Memos",
         url: "/packages/memos/pages/welcom/index",
         icon: "memos",

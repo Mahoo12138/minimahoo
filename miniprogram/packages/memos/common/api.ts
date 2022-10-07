@@ -1,149 +1,70 @@
-export const getMemos = (url, openId) => {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: url + '/api/memo',
-      data: {
-        'openId': openId
-      },
-      success(res) {
-        // console.log(res.data)
-        resolve(res.data)
-      },
-      fail(err) {
-        wx.vibrateLong()
-        wx.showToast({
-          icon: 'none',
-          title: '获取失败',
-        })
-        reject(err)
-      }
-    })
-  })
+import { errHandler, request } from "../../../utils/http";
+import { Memo } from '../types/memo.type';
+
+
+const MemosSignIn = "/auth/signin"
+const MemosSignUp = "/auth/signup"
+const MemosList = "/memo"
+const MemoItem = (id: number, openId?: string) => `/memo/${id}?openId=${openId}`
+const MemoItemPinned = (id: number, openId?: string) => `/memo/${id}/organizer?openId=${openId}`
+const MemoTags = (openId?: string) => `/memo/tag?openId=${openId}`
+
+const memosHandler = (title: string, reject: Function) => {
+  return (err: any) => {
+    wx.vibrateLong();
+    wx.showToast({
+      icon: "error",
+      title,
+    });
+    errHandler(reject)(err)
+  }
 }
 
-export const sendMemo = (url, openId, content) => {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: url + '?openId=' + openId,
-      method: "POST",
-      data: {
-        content: content
-      },
-      success(res) {
-        resolve(res.data)
-      },
-      fail(err) {
-        wx.vibrateLong()
-        wx.showToast({
-          icon: 'none',
-          title: '发送失败',
-        })
-        reject(err)
-      }
-    })
-  })
-}
 
-export const deleteMemo = (url, openId, memoId) => {
+export const getMemos = (openId: string): Promise<Memo[]> => {
   return new Promise((resolve, reject) => {
-    wx.request({
-      url: url + '/api/memo/' + memoId + '?openId=' + openId,
-      method: "DELETE",
-      success(res) {
-        resolve(res.data)
-      },
-      fail(err) {
-        wx.vibrateLong()
-        wx.showToast({
-          icon: 'none',
-          title: '删除失败',
-        })
-        reject(err)
-      }
-    })
-  })
-}
+    request<Memo[]>(MemosList, "GET", { openId }).then(resolve).catch(memosHandler("获取失败", reject))
+  });
+};
 
-export const editMemo = (url, openId, memoId, data) => {
+export const sendMemo = (openId: string, content: string):Promise<Memo> => {
   return new Promise((resolve, reject) => {
-    wx.request({
-      url: url + '/api/memo/' + memoId + '?openId=' + openId,
-      method: "PATCH",
-      data: data,
-      success(res) {
-        resolve(res.data)
-      },
-      fail(err) {
-        wx.vibrateLong()
-        wx.showToast({
-          icon: 'none',
-          title: '更新失败',
-        })
-        reject(err)
-      }
-    })
-  })
-}
+    request<Memo>('', "GET", { openId, content }).then(resolve).catch(memosHandler("发送失败", reject))
+  });
+};
 
-export const changeMemoPinned = (url, openId, memoId, data) => {
+export const deleteMemo = (openId: string, memoId: number) => {
   return new Promise((resolve, reject) => {
-    wx.request({
-      url: url + '/api/memo/' + memoId + '/organizer' + '?openId=' + openId,
-      method: "POST",
-      data: data,
-      success(res) {
-        resolve(res.data)
-      },
-      fail(err) {
-        wx.vibrateLong()
-        wx.showToast({
-          icon: 'none',
-          title: '置顶失败',
-        })
-        reject(err)
-      }
-    })
-  })
-}
+    request(MemoItem(memoId, openId), "DELETE").then(resolve).catch(memosHandler("删除失败", reject))
+  });
+};
 
-export const signIn = (url, data) => {
+export const editMemo = (openId: string, memoId: number, data: any): Promise<Memo> => {
   return new Promise((resolve, reject) => {
-    console.log(data)
-    wx.request({
-      url: url + '/api/auth/signin',
-      method: "POST",
-      data: data,
-      success(res) {
-        resolve(res.data)
-      },
-      fail(err) {
-        wx.vibrateLong()
-        wx.showToast({
-          icon: 'none',
-          title: '登录失败',
-        })
-        reject(err)
-      }
-    })
-  })
-}
+    request<Memo>(MemoItem(memoId, openId), "PUT", data).then(resolve).catch(memosHandler("更新失败", reject))
+  });
+};
 
-export const getTags = (url, openId) => {
+export const changeMemoPinned = (openId: string, memoId: number, data: any) => {
   return new Promise((resolve, reject) => {
-    wx.request({
-      url: url + '/api/tag?openId=' + openId,
-      success(res) {
-        console.log(res.data)
-        resolve(res.data)
-      },
-      fail(err) {
-        wx.vibrateLong()
-        wx.showToast({
-          icon: 'none',
-          title: '获取失败',
-        })
-        reject(err)
-      }
-    })
-  })
-}
+    request(MemoItemPinned(memoId, openId), "POST", data).then(resolve).catch(memosHandler("置顶失败", reject))
+  });
+};
+
+export const getTags = (openId: string) => {
+  return new Promise((resolve, reject) => {
+    request(MemoTags(openId), "GET").then(resolve).catch(memosHandler("获取失败", reject))
+  });
+};
+
+export const signIn = (data: any) => {
+  return new Promise((resolve, reject) => {
+    request(MemosSignIn, "POST", data).then(resolve).catch(memosHandler("操作失败", reject))
+  });
+};
+
+export const signUp = (data: any) => {
+  return new Promise((resolve, reject) => {
+    request(MemosSignUp, "POST", data).then(resolve).catch(reject)
+  });
+};

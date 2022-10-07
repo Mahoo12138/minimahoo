@@ -9,3 +9,10 @@ export interface VertifyData {
   message: string;
   result: boolean;
 }
+
+export interface CommonResp<T> {
+  code: number;
+  data: T;
+  error: string;
+  message: string;
+}
