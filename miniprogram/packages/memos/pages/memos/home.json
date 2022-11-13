@@ -2,5 +2,10 @@
   "usingComponents": {
     "memoCard": "../../components/memoCard/memoCard"
   },
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "backgroundColor": "#F6F6F6",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#F6F6F6",
+  "navigationBarTitleText": "memos",
+  "navigationBarTextStyle": "black"
 }

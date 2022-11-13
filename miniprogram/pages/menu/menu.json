@@ -1,10 +1,13 @@
 {
-    "usingComponents": {
-        "l-icon": "/miniprogram_npm/lin-ui/icon/index",
-        "l-grid": "/miniprogram_npm/lin-ui/grid/index",
-        "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index",
-        "l-loading": "/miniprogram_npm/lin-ui/loading/index",
-        "l-message": "/miniprogram_npm/lin-ui/message/index"
-    },
-    "navigationBarTitleText": "小黄的后花园"
+  "usingComponents": {
+    "l-icon": "lin-ui/icon/index",
+    "l-grid": "lin-ui/grid/index",
+    "l-grid-item": "lin-ui/grid-item/index",
+    "l-loading": "lin-ui/loading/index",
+    "l-message": "lin-ui/message/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index"
+  },
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "小黄的后花园"
 }

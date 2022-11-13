@@ -2,30 +2,45 @@
 <view class="container">
     <scroll-view scroll-y="{{true}}">
         <view class="header">
-            <block wx:if="{{loading}}">
-               <l-loading show="{{true}}" size="large"></l-loading>
-            </block>
-            <block wx:else>
-                <view class="header-top">
-                    <view class="header-left">
-                        <image mode="heightFix" src="https://mowned.com/html/phones/big/xiaomi/xiaomi-redmi-k40.jpg" />
+            <image class="background" mode="widthFix" src="../../assets/main.png" />
+        </view>
+        <view class="welcome">
+            <view class="hello">欢迎来到小黄的后花园！</view>
+            <view class="times">后花园已持续开放：{{phone.Uptime[0]}} 天 {{phone.Uptime[1]}} 小时 {{phone.Uptime[2]}} 分钟 {{phone.Uptime[3]}} 秒</view>
+        </view>
+        <view class="status">
+            <van-row>
+                <van-col span="12">
+                    <view class="info-item">
+                        <view class="title">机型：</view>{{phone.Model}}
                     </view>
-                    <view class="header-right">
-                        <view><span>机型：</span>{{phone.Model}}</view>
-                        <view><span>系统：</span>{{phone.OS}}</view>
-                        <view><span>CPU：</span>{{phone.Cpu.name}}</view>
-                        <view><span>内存：</span>{{phone.Memory.free}}MB / {{phone.Memory.total}}MB</view>
+                </van-col>
+                <van-col span="12">
+                    <view class="info-item">
+                        <view class="title">系统：</view>{{phone.OS}}
                     </view>
-                </view>
-                <view class="header-bottom">
-                    <view>已不间断运行：{{phone.Uptime[0]}}天 {{phone.Uptime[1]}}小时 {{phone.Uptime[2]}}分钟</view>
-                </view>
-            </block>
+                </van-col>
+            </van-row>
+            <van-row>
+                <van-col span="12">
+                    <view class="info-item">
+                        <view class="title">CPU：</view>{{phone.Cpu.name}}
+                    </view>
+                </van-col>
+                <van-col span="12">
+                    <view class="info-item">
+                        <view class="title">内存：</view>
+                        {{phone.Memory.free}}MB / {{phone.Memory.total}}MB
+                    </view>
+                </van-col>
+            </van-row>
+
+
 
         </view>
 
         <view class="content">
-            <l-grid show-border="{{true}}">
+            <l-grid row-num="4">
                 <l-grid-item wx:for="{{apps}}" wx:key="name" key="{{index}}" slot="{{index}}" bind:linitemtap="gotoSubApp" cell="{{item}}">
                     <l-icon color="{{item.color}}" size="60" name='{{item.icon}}' l-class='iconfont' />
                     <view class="gird-span">{{item.name}}</view>
@@ -37,5 +52,5 @@
             <!-- <image class="header-image" mode="widthFix" src="../../assets/home.png" /> -->
         </view>
     </scroll-view>
-    <l-message/>
+    <l-message />
 </view>

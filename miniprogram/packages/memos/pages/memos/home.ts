@@ -1,10 +1,10 @@
 // pages/home/index.js
 import { Event } from '../../../../types/other.type';
-import { deleteMemo, editMemo, getMemos, sendMemo } from '../../common/api';
+import { changeMemoPinned, deleteMemo, editMemo, getMeInfo, getMemos, sendMemo } from '../../common/api';
 import { formatMemoContent, parseHtmlToRawText } from "../../common/marked";
 import { calTime, memosArrenge } from '../../common/utils'
 import { Memo } from '../../types/memo.type';
-var app = getApp();
+const app = getApp();
 
 Page({
   data: {
@@ -18,6 +18,7 @@ Page({
     onlineColor: "#eeeeee",
     showArchived: false,
     sendLoading: false,
+    me: ""
   },
 
   onLoad(options) {
@@ -45,6 +46,7 @@ Page({
               showMemos: res.data.slice(0, 10),
             });
             that.getMemos(openId);
+            that.getMe(openId)
           },
           fail(err) {
             console.log(err);
@@ -59,6 +61,14 @@ Page({
         });
       },
     });
+  },
+
+  getMe(openId: string){
+    getMeInfo(openId).then(res =>{
+        this.setData({
+            me: res.name
+        })
+    })
   },
 
   onReachBottom() {
@@ -110,11 +120,10 @@ Page({
       pinned: !e.detail.pinned,
     };
     var that = this;
-    app.api
-      .changeMemoPinned(this.data.url, this.data.openId, e.detail.memoid, data)
-      .then((res) => {
-        console.log(res);
-        if (res.data) {
+    changeMemoPinned(this.data.openId, e.detail.memoid, data)
+      .then((data) => {
+        console.log(data);
+        if (data) {
           wx.vibrateShort({ type: "light" });
           if (!e.detail.pinned) {
             wx.showToast({
@@ -133,7 +142,7 @@ Page({
               memos[i].pinned = !e.detail.pinned;
             }
           }
-          var arrMemos = app.memosArrenge(memos);
+          var arrMemos = memosArrenge(memos);
           console.log(arrMemos);
           that.setData({
             memos: arrMemos,
@@ -185,8 +194,7 @@ Page({
       } else {
         for (let i = 0; i < memos.length; i++) {
           const ts = memos[i].createdTs;
-          var time = app.calTime(ts);
-          memos[i].time = time;
+          memos[i].time = calTime(ts);
           //memos原版解析
           let md = formatMemoContent(memos[i].content);
           memos[i].formatContent = md;
@@ -317,7 +325,7 @@ Page({
         let md = formatMemoContent(newmemo.content);
         newmemo.formatContent = md;
         memos.unshift(newmemo);
-        var arrMemos = app.memosArrenge(memos);
+        var arrMemos = memosArrenge(memos);
         that.setData({
           memos: arrMemos,
           showMemos: arrMemos.slice(0, this.data.showMemos.length + 1),

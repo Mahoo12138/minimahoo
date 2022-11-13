@@ -1,5 +1,6 @@
 export interface Memo {
   id: number;
+  pinned: boolean;
   content: string;
   createdTs: string;
   rowStatus: RowStatus;

@@ -1,5 +1,5 @@
 // tag regex
-export const TAG_REG = /#([^\s#]+?) /g;
+export const TAG_REG = /[ |^]#([^\s#]+?) /g;
 
 // markdown image regex
 export const IMAGE_URL_REG = /!\[.*?\]\((.+?)\)/g;

@@ -30,36 +30,28 @@ Page({
     }
   },
   onLoad() {
-    const { token , user } = app.globalData;
-    if (!token || !user) {
-      app
-        .userLogin()
-        .then(() => {
-          this.setData({
-            canIGotoAuth: true,
-          });
-        })
-        .catch(() => {
-          this.setData({
-            loading: false,
-            canIGotoAuth: false,
-          });
-          // @ts-ignore
-          wx.lin.showMessage({
-            content: "未知错误",
-            type: "error",
-          });
-        })
-        .finally(() => {
-          this.setData({
-            loading: false,
-          });
+    app
+      .userLogin()
+      .then(() => {
+        this.setData({
+          canIGotoAuth: true,
         });
-    } else {
-      this.setData({
-        loading: false,
-        canIGotoAuth: true,
+      })
+      .catch(() => {
+        this.setData({
+          loading: false,
+          canIGotoAuth: false,
+        });
+        // @ts-ignore
+        wx.lin.showMessage({
+          content: "未知错误",
+          type: "error",
+        });
+      })
+      .finally(() => {
+        this.setData({
+          loading: false,
+        });
       });
-    }
-  }
+  },
 });

@@ -2,59 +2,71 @@
 
 .container {
     height: 100%;
+    background-color: #e6f6f6;
 
     .header {
-        display: flex;
-        margin: 0 20rpx;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border-radius: 20rpx;
-        min-height: 30vh;
-        padding: 20rpx 30rpx;
-        box-sizing: border-box;
-        background-color: #71a5f1;
-        .header-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            .header-left {
-                width: 22vw;
-                height: 22vh;
-                padding: 15rpx;
-                border-radius: 20rpx;
-                // background-color: white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                // border: 6rpx solid rgb(24, 110, 238);
-                & image {
-                    border-radius: 16rpx;
-                    max-height: 18vh;
-                }
-            }
-
-            .header-right {
-                flex: 1;
-                font-size: 30rpx;
-                // text-align: center;
-                padding-left: 30rpx;
-                color: #fff;
-                line-height: 55rpx;
-
-                & text {
-                    color: black;
-                }
-            }
-        }
-        .header-bottom {
-            text-align: center;
-            padding-bottom: 10rpx;
+        border-radius: 0 0 16rpx 16rpx;
+        height: 35vh;
+        margin-bottom: -70rpx;
+        overflow: hidden;
+        z-index: 1;
+        .background {
+            display: inherit;
+            width: 100%;
         }
     }
 
-    .content .gird-text {
-        font-size: 32rpx;
+    .welcome {
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: rgb(255, 255, 255);
+        height: 10vh;
+        margin: 16rpx;
+        border-radius: 16rpx;
+        font-size: 40rpx;
+        padding: 25rpx;
+        border: 1px solid rgb(218, 217, 217);
+
+        .times {
+            padding: 10rpx 0;
+            font-size: 30rpx;
+            color: gray;
+        }
+    }
+
+    .status {
+        margin: 0 5px;
+
+        .info-item {
+            height: 10vh;
+            background: #fff;
+            margin: 10rpx;
+            padding-left: 25rpx;
+            border-radius: 16rpx;
+            font-size: 32rpx;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid rgb(218, 217, 217);
+
+            .title {
+                font-size: 32rpx;
+                padding-bottom: 8rpx;
+            }
+        }
+    }
+
+    .content {
+        margin: 16rpx;
+        background-color: #fff;
+        border-radius: 16rpx;
+        border: 1px solid rgb(218, 217, 217);
+
+        .gird-text {
+            font-size: 32rpx;
+        }
     }
 }
 
