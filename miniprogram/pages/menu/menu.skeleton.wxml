@@ -1,0 +1,136 @@
+<!--
+此文件为开发者工具生成，生成时间: 2022/11/19下午4:04:06
+使用方法：
+在 D:\Code\WeChatProjects\minimahoo\miniprogram\pages\menu\menu.wxml 引入模板
+
+```
+<import src="menu.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+```
+
+在 D:\Code\WeChatProjects\minimahoo\miniprogram\pages\menu\menu.wxss 中引入样式
+```
+@import "./menu.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="container">
+      <scroll-view scroll-y="true">
+        <view class="header">
+          <image class="background sk-image" mode="widthFix" style="height: 244.8px;"></image>
+        </view>
+        <view class="card welcome">
+          <view class="hello sk-transparent sk-text-14-2857-508 sk-text">欢迎来到小黄的后花园！</view>
+          <view class="times sk-transparent sk-text-14-2857-154 sk-text">后花园已持续开放：9 天 21 小时 1 分钟 46 秒</view>
+        </view>
+        <view class="status">
+          <view is="miniprogram_npm/@vant/weapp/row/index">
+            <view class="van-row row-index--van-row sk-pseudo sk-pseudo-circle" style="true">
+              <view is="miniprogram_npm/@vant/weapp/col/index">
+                <view class=" van-col index--van-col van-col--12 index--van-col--12" style="true">
+                  <view class="card info-item sk-transparent">
+                    <view class="title sk-transparent sk-text-14-2857-76 sk-text">机型：</view>Redmi M2012K11AC
+                  </view>
+                </view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/col/index">
+                <view class=" van-col index--van-col van-col--12 index--van-col--12" style="true">
+                  <view class="card info-item sk-transparent">
+                    <view class="title sk-transparent sk-text-14-2857-488 sk-text">系统：</view>Android 12 aarch64
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view is="miniprogram_npm/@vant/weapp/row/index">
+            <view class="van-row row-index--van-row sk-pseudo sk-pseudo-circle" style="true">
+              <view is="miniprogram_npm/@vant/weapp/col/index">
+                <view class=" van-col index--van-col van-col--12 index--van-col--12" style="true">
+                  <view class="card info-item sk-transparent">
+                    <view class="title sk-transparent sk-text-14-2857-782 sk-text">CPU：</view>Qualcomm SM8250
+                  </view>
+                </view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/col/index">
+                <view class=" van-col index--van-col van-col--12 index--van-col--12" style="true">
+                  <view class="card info-item sk-transparent">
+                    <view class="title sk-transparent sk-text-14-2857-689 sk-text">内存：</view>
+                    5778MB / 12161MB
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="card content">
+          <view is="miniprogram_npm/lin-ui/grid/index">
+            <view class="grid-index--l-grid ">
+              <view class="grid-index--l-grid-item  " data-grid-index="0" style="min-width:25%;">
+                <view is="miniprogram_npm/lin-ui/grid-item/index">
+                  <view class="  item-index--grid-item" hover-class="l-gird-item-hover" hover-start-time="20" hover-stay-time="50">
+                    <view is="miniprogram_npm/lin-ui/icon/index">
+                      <view class="iconfont l-icon icon-index--l-icon l-icon-code icon-index--l-icon-code sk-pseudo sk-pseudo-circle" style="font-size:28px;color:#ff7f27;"></view>
+                    </view>
+                    <view class="gird-span sk-transparent sk-text-14-2857-875 sk-text" style="background-position-x: 50%;">验证码</view>
+                  </view>
+                </view>
+              </view>
+              <view class="grid-index--l-grid-item  " data-grid-index="1" style="min-width:25%;">
+                <view is="miniprogram_npm/lin-ui/grid-item/index">
+                  <view class="  item-index--grid-item" hover-class="l-gird-item-hover" hover-start-time="20" hover-stay-time="50">
+                    <view is="miniprogram_npm/lin-ui/icon/index">
+                      <view class="iconfont l-icon icon-index--l-icon l-icon-water icon-index--l-icon-water sk-pseudo sk-pseudo-circle" style="font-size:28px;color:#73be70;"></view>
+                    </view>
+                    <view class="gird-span sk-transparent sk-text-14-2857-422 sk-text" style="background-position-x: 50%;">喝水宝</view>
+                  </view>
+                </view>
+              </view>
+              <view class="grid-index--l-grid-item  " data-grid-index="2" style="min-width:25%;">
+                <view is="miniprogram_npm/lin-ui/grid-item/index">
+                  <view class="  item-index--grid-item" hover-class="l-gird-item-hover" hover-start-time="20" hover-stay-time="50">
+                    <view is="miniprogram_npm/lin-ui/icon/index">
+                      <view class="iconfont l-icon icon-index--l-icon l-icon-daylio icon-index--l-icon-daylio sk-pseudo sk-pseudo-circle" style="font-size:28px;color:#1ab991;"></view>
+                    </view>
+                    <view class="gird-span sk-transparent sk-text-14-2857-523 sk-text" style="background-position-x: 50%;">Daylio</view>
+                  </view>
+                </view>
+              </view>
+              <view class="grid-index--l-grid-item  " data-grid-index="3" style="min-width:25%;">
+                <view is="miniprogram_npm/lin-ui/grid-item/index">
+                  <view class="  item-index--grid-item" hover-class="l-gird-item-hover" hover-start-time="20" hover-stay-time="50">
+                    <view is="miniprogram_npm/lin-ui/icon/index">
+                      <view class="iconfont l-icon icon-index--l-icon l-icon-memos icon-index--l-icon-memos sk-pseudo sk-pseudo-circle" style="font-size:28px;color:#ffbf72;"></view>
+                    </view>
+                    <view class="gird-span sk-transparent sk-text-14-2857-244 sk-text" style="background-position-x: 50%;">Memos</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="card message">
+          <view is="miniprogram_npm/lin-ui/input/index">
+            <label class="input-index--form-item  input-index--form-item-left" style="width:auto">
+              <view class="input-index--input input-index--hideLabel sk-image" maxlength="140" placeholder="向小黄发送一条通知吧..." placeholder-class="pls-class" placeholder-style="true" type="text" value="true" selection-start="-1" selection-end="-1" cursor="-1"></view>
+              <view is="miniprogram_npm/lin-ui/button/index">
+                <label for="lin">
+                  <view class="button-index--l-btn button-index--l-btn-medium button-index--l-btn-default button-index--l-btn-circle sk-transparent sk-text-14-2857-412 sk-text" hover-class="btn-hover l-hover-class" hover-start-time="20" hover-stay-time="70"
+                    style="min-width:72px;   background-color:">发送</view>
+                </label>
+              </view>
+            </label>
+          </view>
+        </view>
+        <view class="card footer sk-transparent sk-text-14-2857-764 sk-text">
+          已经到花园的末尾了
+        </view>
+      </scroll-view>
+      <view is="miniprogram_npm/lin-ui/message/index">
+        <view class="message-index--l-message  message-index--l-message-primary" style="z-index:777;top:0px"></view>
+      </view>
+    </view>
+  </view>
+</template>

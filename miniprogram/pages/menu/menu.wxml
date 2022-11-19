@@ -1,34 +1,37 @@
 <!--pages/menu/menu.wxml-->
+<import src="menu.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+<l-toast id="my-toast" />
 <view class="container">
     <scroll-view scroll-y="{{true}}">
         <view class="header">
             <image class="background" mode="widthFix" src="../../assets/main.png" />
         </view>
-        <view class="welcome">
+        <view class="card welcome">
             <view class="hello">欢迎来到小黄的后花园！</view>
             <view class="times">后花园已持续开放：{{phone.Uptime[0]}} 天 {{phone.Uptime[1]}} 小时 {{phone.Uptime[2]}} 分钟 {{phone.Uptime[3]}} 秒</view>
         </view>
         <view class="status">
             <van-row>
                 <van-col span="12">
-                    <view class="info-item">
+                    <view class="card info-item">
                         <view class="title">机型：</view>{{phone.Model}}
                     </view>
                 </van-col>
                 <van-col span="12">
-                    <view class="info-item">
+                    <view class="card info-item">
                         <view class="title">系统：</view>{{phone.OS}}
                     </view>
                 </van-col>
             </van-row>
             <van-row>
                 <van-col span="12">
-                    <view class="info-item">
+                    <view class="card info-item">
                         <view class="title">CPU：</view>{{phone.Cpu.name}}
                     </view>
                 </van-col>
                 <van-col span="12">
-                    <view class="info-item">
+                    <view class="card info-item">
                         <view class="title">内存：</view>
                         {{phone.Memory.free}}MB / {{phone.Memory.total}}MB
                     </view>
@@ -39,7 +42,7 @@
 
         </view>
 
-        <view class="content">
+        <view class="card content">
             <l-grid row-num="4">
                 <l-grid-item wx:for="{{apps}}" wx:key="name" key="{{index}}" slot="{{index}}" bind:linitemtap="gotoSubApp" cell="{{item}}">
                     <l-icon color="{{item.color}}" size="60" name='{{item.icon}}' l-class='iconfont' />
@@ -47,8 +50,14 @@
                 </l-grid-item>
             </l-grid>
         </view>
+        <view class="card message">
+            <l-input model:value="{{message}}" showRow="{{false}}" hide-label="{{true}}"  placeholder="向小黄发送一条通知吧...">
+                <l-button bind:lintap="hanldeSendMsg" slot="right" width="150" shape="circle">发送</l-button>
+            </l-input>
+        </view>
 
-        <view class="footer">
+        <view class="card footer">
+            已经到花园的末尾了...
             <!-- <image class="header-image" mode="widthFix" src="../../assets/home.png" /> -->
         </view>
     </scroll-view>

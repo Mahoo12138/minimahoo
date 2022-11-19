@@ -2,35 +2,32 @@
 
 .container {
     height: 100%;
-    background-color: #e6f6f6;
-
+    // background-color: #e6f6f6;
+    background-color: #a9dff1;
+    padding-bottom:20px;
     .header {
-        border-radius: 0 0 16rpx 16rpx;
+        border-radius: 0 0 25rpx 25rpx;
         height: 35vh;
-        margin-bottom: -70rpx;
+        margin-bottom: -100rpx;
         overflow: hidden;
         z-index: 1;
+
         .background {
             display: inherit;
             width: 100%;
         }
     }
 
-    .welcome {
+    .card.welcome {
         z-index: 999;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background: rgb(255, 255, 255);
-        height: 10vh;
         margin: 16rpx;
-        border-radius: 16rpx;
         font-size: 40rpx;
-        padding: 25rpx;
-        border: 1px solid rgb(218, 217, 217);
 
         .times {
-            padding: 10rpx 0;
+            padding: 15rpx 0 10rpx;
             font-size: 30rpx;
             color: gray;
         }
@@ -39,19 +36,18 @@
     .status {
         margin: 0 5px;
 
-        .info-item {
+        .card.info-item {
             height: 10vh;
-            background: #fff;
+            color: rgb(100, 99, 99);
             margin: 10rpx;
-            padding-left: 25rpx;
-            border-radius: 16rpx;
-            font-size: 32rpx;
+            padding: 0 25rpx;
+            font-size: 30rpx;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            border: 1px solid rgb(218, 217, 217);
 
             .title {
+                color: rgb(31, 30, 30);
                 font-size: 32rpx;
                 padding-bottom: 8rpx;
             }
@@ -60,14 +56,32 @@
 
     .content {
         margin: 16rpx;
-        background-color: #fff;
-        border-radius: 16rpx;
-        border: 1px solid rgb(218, 217, 217);
 
         .gird-text {
             font-size: 32rpx;
         }
     }
+
+    .card.message {
+        margin: 16rpx;
+        font-size: 30rpx;
+        .send-btn {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+    }
+    .card.footer {
+        margin: 10rpx 16rpx;
+        font-size: 30rpx;
+    }
+}
+
+.card {
+    padding: 25rpx;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(218, 217, 217);
+    border-radius: 16rpx;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 @font-face {
