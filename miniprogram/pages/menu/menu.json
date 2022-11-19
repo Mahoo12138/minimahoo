@@ -2,9 +2,11 @@
   "usingComponents": {
     "l-icon": "lin-ui/icon/index",
     "l-grid": "lin-ui/grid/index",
+    "l-button": "lin-ui/button/index",
+    "l-input": "lin-ui/input/index",
     "l-grid-item": "lin-ui/grid-item/index",
     "l-loading": "lin-ui/loading/index",
-    "l-message": "lin-ui/message/index",
+    "l-toast": "lin-ui/toast/index",
     "van-row": "@vant/weapp/row/index",
     "van-col": "@vant/weapp/col/index"
   },

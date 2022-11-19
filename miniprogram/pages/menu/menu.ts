@@ -1,7 +1,6 @@
 // pages/menu/menu.ts
-import { getPhoneInfo } from "../../common/api";
+import { getPhoneInfo, sendMessage } from "../../common/api";
 import { PhoneInfo } from "../../types/phone.type";
-import { showMessage } from "../../utils/ui";
 import apps from "./app";
 
 Page({
@@ -9,8 +8,30 @@ Page({
     apps: apps,
     phone: {} as PhoneInfo,
     loading: true,
+    message: "",
   },
-
+  hanldeSendMsg() {
+    console.log(this.data.message);
+    sendMessage({
+      title: "小黄后花园",
+      content: this.data.message,
+    })
+      .then(() => {
+        this.showToast("发送成功", "success");
+      })
+      .catch(() => {
+        this.showToast("发送失败", "error");
+      });
+  },
+  // top/left/right/bottom
+  showToast(content: string, icon?: string, placement = "bottom") {
+    const toast = this.selectComponent("#my-toast");
+    toast.linShow({
+      title: content,
+      icon,
+      placement,
+    });
+  },
   // @ts-ignore
   gotoSubApp({ detail }) {
     wx.navigateTo({
@@ -34,11 +55,14 @@ Page({
           seconds = 0;
         }
         if (minutes === 59) {
-            minutes = 0;
-            hours++;
-          }
+          minutes = 0;
+          hours++;
+        }
         this.setData({
-          phone: { ...phone, Uptime: [...phone.Uptime, hours, minutes, seconds] },
+          phone: {
+            ...phone,
+            Uptime: [...phone.Uptime, hours, minutes, seconds],
+          },
         });
       }
     }, 1000);
@@ -57,11 +81,11 @@ Page({
         });
       })
       .catch(() => {
-        showMessage("获取手机信息失败", "error");
+        this.showToast("获取手机信息失败", "error");
       });
     setTimeout(() => {
       if (this.data.loading) {
-        showMessage("加载缓慢，手机可能处于睡眠模式", "warning", 4000);
+        this.showToast("当前网络加载缓慢，手机可能处于睡眠模式");
       }
     }, 3000);
   },

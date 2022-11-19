@@ -4,6 +4,5 @@ export interface User {
     openId: string;
     memosId: number;
     isAuth: boolean;
-
     memosKey: string;
 }
