@@ -1,0 +1,79 @@
+/* packages/hippus/pages/home/home.wxss */
+.container {
+    background-color: #156cf7;
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        color: #fff;
+        font-size: 14px;
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+            .title-primary {
+                color: darkorange;
+            }
+        }
+        .sub-title {
+            line-height: 60px;
+        }
+        .login-btn {
+            background-color: #fff;
+            font-weight: 500;
+            color: #000;
+            padding: 30rpx 120rpx;
+            border-radius: 50rpx;
+        }
+    }
+}
+
+.login-dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30rpx 40rpx;
+    &__title {
+        font-size: 60rpx;
+        color: #051e47;
+        line-height: 150rpx;
+    }
+    &__subtitle {
+        font-size: 40rpx;
+        color: #999999;
+    }
+    &__logo {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 50rpx;
+        background-color: burlywood;
+    }
+    &__input {
+        width: 100%;
+        &-label {
+            font-weight: 500;
+            color: #5a5a5a;
+            line-height: 60rpx;
+        }
+        &-field {
+            border: 2px solid transparent;
+            border-radius: 20rpx;
+            background-color: #f8f7fc;
+        }
+        .is-focus {
+            border: 2px solid #156cf7;
+        }
+    }
+    &__submit {
+        padding: 50rpx;
+        width: 100%;
+        &-button {
+            width: 100%;
+            padding: 45rpx !important;
+            border-radius: 15rpx !important;
+        }
+    }
+}

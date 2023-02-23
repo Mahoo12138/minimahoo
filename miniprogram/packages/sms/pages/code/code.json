@@ -1,6 +1,6 @@
 {
     "usingComponents": {
-        "card": "/components/Card",
+        "card": "/components/Card/Card",
         "l-icon": "/miniprogram_npm/lin-ui/icon/index",
         "l-button": "/miniprogram_npm/lin-ui/button/index",
         "l-message": "/miniprogram_npm/lin-ui/message/index",

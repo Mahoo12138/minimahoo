@@ -1,0 +1,115 @@
+<!-- navbar头部 -->
+<view class="container">
+  <nav-bar navbar-data="{{nvabarData}}" text="返回" />
+  <view class="content" style="margin-top: {{height}}px;">
+    <view class="title"> 登录<text class="title-primary"> 那个 </text>账号 </view>
+    <view class="sub-title">
+      从此，让打卡不再是烦恼
+    </view>
+    <view class="login-btn" bind:tap="openLoginDialog">
+      登录
+    </view>
+  </view>
+  <l-arc-popup locked show="{{isShowLogin}}" animation="show" max-height="1200">
+    <swiper current="{{activeIndex}}" style="height: 1200px">
+      <swiper-item catch:touchmove>
+        <view class="login-dialog">
+          <view class="login-dialog__title">感谢您的选择</view>
+          <view class="login-dialog__subtitle">
+            继续登录以获得最佳体验！
+          </view>
+          <view class="login-dialog__logo" />
+          <view class="login-dialog__input">
+            <view class="login-dialog__input-label">请输入手机号</view>
+            <l-input
+              data-field="Phone"
+              bind:linfocus="handleFocusInput"
+              bind:linblur="handleBlurInput"
+              model:value="{{phone}}"
+              l-class="{{'login-dialog__input-field ' + (isPhoneFocus && 'is-focus')}}"
+              label-width="80"
+              showRow="{{false}}"
+            >
+              <view slot="left">
+                <l-icon name="user" size="30" />
+              </view>
+            </l-input>
+            <view class="login-dialog__input-label">请输入密码</view>
+            <l-input
+              data-field="Passwd"
+              bind:linfocus="handleFocusInput"
+              bind:linblur="handleBlurInput"
+              model:value="{{password}}"
+              l-class="{{'login-dialog__input-field ' + (isPasswdFocus && 'is-focus')}}"
+              label-width="80"
+              showRow="{{false}}"
+            >
+              <view slot="left">
+                <l-icon name="password" size="30" />
+              </view> </l-input
+          ></view>
+          <view class="login-dialog__submit">
+            <l-button
+              bg-color="#156cf7"
+              l-class="login-dialog__submit-button"
+              shape="circle"
+              type="default"
+              bind:lintap="handlePasswdLogin"
+              >登录{{activeIndex}}</l-button
+            >
+            <view bind:tap="handleLoginType">忘记密码？使用验证码登录</view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item catch:touchmove>
+        <view class="login-dialog">
+          <view class="login-dialog__title">验证码登录</view>
+          <view class="login-dialog__subtitle">
+            继续登录以获得最佳体验！
+          </view>
+          <view class="login-dialog__logo" />
+          <view class="login-dialog__input">
+            <view class="login-dialog__input-label">请输入手机号</view>
+            <l-input
+              data-field="Phone"
+              bind:linfocus="handleFocusInput"
+              bind:linblur="handleBlurInput"
+              model:value="{{phone}}"
+              l-class="{{'login-dialog__input-field ' + (isPhoneFocus && 'is-focus')}}"
+              label-width="80"
+              showRow="{{false}}"
+            >
+              <view slot="left">
+                <l-icon name="user" size="30" />
+              </view>
+            </l-input>
+            <view class="login-dialog__input-label">请输入密码</view>
+            <l-input
+              data-field="Passwd"
+              bind:linfocus="handleFocusInput"
+              bind:linblur="handleBlurInput"
+              model:value="{{password}}"
+              l-class="{{'login-dialog__input-field ' + (isPasswdFocus && 'is-focus')}}"
+              label-width="80"
+              showRow="{{false}}"
+            >
+              <view slot="left">
+                <l-icon name="password" size="30" />
+              </view> </l-input
+          ></view>
+          <view class="login-dialog__submit">
+            <l-button
+              bg-color="#156cf7"
+              l-class="login-dialog__submit-button"
+              shape="circle"
+              type="default"
+              bind:lintap="handlePasswdLogin"
+              >登录{{activeIndex}}</l-button
+            >
+            <view bind:tap="handleLoginType">忘记密码？使用验证码登录</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </l-arc-popup>
+</view>

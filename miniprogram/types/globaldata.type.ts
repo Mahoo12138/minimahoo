@@ -5,6 +5,8 @@ export interface AppGlobalData {
     user: User | null;
     token: string | null;
     isLogin: boolean;
+    statusBarHeight: number;
+    navBarHeight: number;
   };
   userLogin: Function
 }

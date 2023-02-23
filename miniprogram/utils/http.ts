@@ -1,8 +1,8 @@
 import { CommonResp } from '../types/response.types';
 
 type Method = "OPTIONS" | "GET" | "HEAD" | "POST" | "PUT" | "DELETE";
-// const API_BASE_URL = "https://192.168.31.46:3000/api"; // 测试域名
-const API_BASE_URL = "https://mahoo12138.cn/api"; // 测试域名
+// const API_BASE_URL = "https://192.168.31.45:3000/api"; // 测试域名
+const API_BASE_URL = "https://mido.mahoo12138.cn/api"; // 测试域名
 
 export const request = <T>(url: string, method: Method, data?: any) => {
   let _url = API_BASE_URL + url;
@@ -20,7 +20,7 @@ export const request = <T>(url: string, method: Method, data?: any) => {
         if (isSuccess(request.statusCode)) {
           const data = request.data.data;
           resolve(data);
-        }else{
+        } else {
           reject(request.data)
         }
       },

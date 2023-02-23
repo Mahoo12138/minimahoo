@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+        "nav-bar": "/components/NavBar/NavBar",
+        "l-arc-popup": "/miniprogram_npm/lin-ui/arc-popup/index",
+        "l-input": "/miniprogram_npm/lin-ui/input/index",
+        "l-button": "/miniprogram_npm/lin-ui/button/index",
+        "l-icon": "/miniprogram_npm/lin-ui/icon/index"
+    },
+    "navigationStyle": "custom"
+}

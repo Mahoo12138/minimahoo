@@ -72,22 +72,22 @@ Page({
     this.handleTimer();
   },
   onLoad() {
-    getPhoneInfo()
-      .then((data) => {
-        data.Uptime.push((Math.random() * 60) | 0);
-        this.setData({
-          phone: data,
-          loading: false,
-        });
-      })
-      .catch(() => {
-        this.showToast("获取手机信息失败", "error");
-      });
-    setTimeout(() => {
-      if (this.data.loading) {
-        this.showToast("当前网络加载缓慢，手机可能处于睡眠模式");
-      }
-    }, 3000);
+    // getPhoneInfo()
+    //   .then((data) => {
+    //     data.Uptime.push((Math.random() * 60) | 0);
+    //     this.setData({
+    //       phone: data,
+    //       loading: false,
+    //     });
+    //   })
+    //   .catch(() => {
+    //     this.showToast("获取手机信息失败", "error");
+    //   });
+    // setTimeout(() => {
+    //   if (this.data.loading) {
+    //     this.showToast("当前网络加载缓慢，手机可能处于睡眠模式");
+    //   }
+    // }, 3000);
   },
   onReady() {},
   onHide() {},
