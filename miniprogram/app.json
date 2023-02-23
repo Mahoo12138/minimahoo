@@ -1,35 +1,55 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/auth/auth",
-    "pages/menu/menu"
-  ],
-  "subPackages": [
-    {
-      "root": "packages/water/",
-      "name": "water",
-      "pages": ["pages/water/index", "pages/log/log", "pages/report/report"]
+    "pages": [
+        "pages/index/index",
+        "pages/auth/auth",
+        "pages/menu/menu"
+    ],
+    "subPackages": [
+        {
+            "root": "packages/water/",
+            "name": "water",
+            "pages": [
+                "pages/water/index",
+                "pages/log/log",
+                "pages/report/report"
+            ]
+        },
+        {
+            "root": "packages/sms/",
+            "name": "sms",
+            "pages": [
+                "pages/code/code"
+            ]
+        },
+        {
+            "root": "packages/memos/",
+            "name": "memos",
+            "pages": [
+                "pages/memos/home",
+                "pages/welcom/index",
+                "pages/search/index"
+            ]
+        },
+        {
+            "root": "packages/hippus/",
+            "name": "hippus",
+            "pages": [
+                "pages/home/home",
+                "pages/login/login"
+            ]
+        }
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Weixin",
+        "navigationBarTextStyle": "black"
     },
-    {
-      "root": "packages/sms/",
-      "name": "sms",
-      "pages": ["pages/code/code"]
+    "resolveAlias": {
+        "~/*": "/*",
+        "~/origin/*": "origin/*",
+        "@utils/*": "utils/*",
+        "@behaviors/*": "behaviors/*"
     },
-    {
-      "root": "packages/memos/",
-      "name": "memos",
-      "pages": [
-        "pages/memos/home",
-        "pages/welcom/index",
-        "pages/search/index"
-      ]
-    }
-  ],
-  "window": {
-    "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
-  },
-  "sitemapLocation": "sitemap.json"
+    "sitemapLocation": "sitemap.json"
 }

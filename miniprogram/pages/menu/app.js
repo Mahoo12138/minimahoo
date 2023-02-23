@@ -22,5 +22,11 @@ export default ([
         url: "/packages/memos/pages/welcom/index",
         icon: "memos",
         color: "#ffbf72"
+    },
+    {
+        name: "Hippus",
+        url: "/packages/hippus/pages/home/home",
+        icon: "memos",
+        color: "#ffbf72"
     }
 ])
